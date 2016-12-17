@@ -1,0 +1,87 @@
+{
+    "author": "rapoport@shermans.net",
+    "dependencies": {
+        "pebble-clay": "^1.0.0"
+    },
+    "keywords": [],
+    "name": "weather-face",
+    "pebble": {
+        "capabilities": [
+            "location",
+            "configurable"
+        ],
+        "displayName": "weather clock",
+        "enableMultiJS": true,
+        "messageKeys": {
+            "CITY": 5,
+            "CONDITIONS": 6,
+            "DATE_FORMAT": 3,
+            "DIURNAL": 0,
+            "HEMISPHERE": 16,
+            "HUMIDITY": 7,
+            "LATITUDE": 18,
+            "ORIGIN": 15,
+            "PRESSURE_FORMAT": 13,
+            "PRESSURE_MB": 11,
+            "SEASON": 17,
+            "TEMPERATURE": 4,
+            "TEMPERATURE_SCALE": 1,
+            "UV": 9,
+            "UV_FORMAT": 10,
+            "WIND_DEGREES": 12,
+            "WIND_DEGREES_FORMAT": 14,
+            "WIND_KPH": 8,
+            "WIND_SPEED_FORMAT": 2
+        },
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "fonts/Verdana-RBold.ttf",
+                    "name": "FONT_VERDANA_RBOLD_18",
+                    "targetPlatforms": [
+                        "aplite",
+                        "basalt",
+                        "chalk",
+                        "diorite"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/Verdana-NBold.ttf",
+                    "name": "FONT_VERDANA_NBOLD_18",
+                    "targetPlatforms": [
+                        "aplite",
+                        "basalt",
+                        "chalk",
+                        "diorite"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/Verdana-NBold.ttf",
+                    "name": "FONT_VERDANA_NBOLD_36",
+                    "targetPlatforms": [
+                        "aplite",
+                        "basalt",
+                        "chalk",
+                        "diorite"
+                    ],
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite"
+        ],
+        "uuid": "54f45587-2c2d-4767-8dd2-1dbb74e0c79e",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}
