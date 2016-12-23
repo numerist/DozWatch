@@ -16,7 +16,7 @@ var xhrRequest = function (url, type, callback) {
 function locationSuccess(pos) {
   var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/" + pos.coords.latitude + "," + pos.coords.longitude + ".json";
 	//var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/43.26,-79.9.json"; // Hamilton
-  //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/Canada/Fort_Conger/.json";
+  //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/Canada/Greenside_Acres/.json";
   //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/Australia/Melbourne/.json";
   //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/43.229,-79.9911.json";
   console.log(url);
@@ -29,7 +29,7 @@ function locationSuccess(pos) {
       var uv = parseInt(10*json.current_observation.UV);
 			var wind_degrees = parseInt(json.current_observation.wind_degrees);
 			var pressure_mb = parseInt(json.current_observation.pressure_mb);
-      //var pressure_mb = parseInt(100*json.current_observation.pressure_in);
+      //var pressure_mb = parseInt(100*json.current_observation.pressure_in); from inches
 			var conditions = json.current_observation.weather;
 			var city = json.current_observation.display_location.city;
 			var latitude = parseInt(1000000*pos.coords.latitude);

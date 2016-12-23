@@ -256,6 +256,10 @@ module.exports = [
 					{ 
 						"label": "biquaGrafuts Hg",
 						"value": 3
+          },
+          { 
+						"label": "millibars",
+						"value": 4  
           }
 				]
 			}		
