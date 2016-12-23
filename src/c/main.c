@@ -215,7 +215,7 @@ static void refresh_weather(){
     switch(settings.uv_format){
 	    case 0: uv = 1.0984*settings.uv+0.5; break; //quadciaintensitels (wrongly was 1.898)
 	    case 1: uv = 1.6544*settings.uv+0.5; break; //hexciaPenz (wrongly was 4.94)
-	    default : uv = settings.uv; break; //SI intensity
+	    default : uv = settings.uv+0.5; break; //SI intensity
     }
     write_dozenal(uv,1,uv_buffer);
     if(stale_uv==1){ strcat(uv_buffer,"'"); }
@@ -226,7 +226,7 @@ static void refresh_weather(){
     case 2: pressure_mb = settings.pressure_mb*0.4137+0.5; break; //unquaPrems
     case 3: pressure_mb = settings.pressure_mb*0.3653+0.5; break; //biquaGrafuts Hg
 		default: pressure_mb = settings.pressure_mb*1.0974+0.5; break; //unqualengthels Hg
-    case 4: pressure_mb = settings.pressure_mb; break; //millibars
+    case 4: pressure_mb = settings.pressure_mb+0.5; break; //millibars
     //case 0: pressure_mb = settings.pressure_mb*42.1457+0.5; break; //pressurels from inches
     //case 2: pressure_mb = settings.pressure_mb*14.0098+0.5; break; //unquaPrems from inches
     //case 3: pressure_mb = settings.pressure_mb*12.37+0.5; break; //biquaGrafuts Hg from inches
@@ -241,7 +241,7 @@ static void refresh_weather(){
 	if ((settings.wind_degrees>=0)&(settings.wind_degrees<=360)){
     switch(settings.wind_degrees_format){
       case 0: wind_degrees = 0.4*(settings.wind_degrees%360)+0.5;	break; //biciaturns
-      case 2: wind_degrees = settings.wind_degrees%360;	break; //degrees
+      case 2: wind_degrees = settings.wind_degrees%360+0.5;	break; //degrees
 		  default: wind_degrees = 0.0667*(settings.wind_degrees%360)+0.5;	break; //unciaPis
     }
     write_dozenal(wind_degrees,1,wind_degrees_buffer);
