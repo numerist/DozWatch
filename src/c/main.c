@@ -213,8 +213,8 @@ static void refresh_weather(){
   
   if(settings.uv>=0){
     switch(settings.uv_format){
-	    case 0: uv = 1.0984*settings.uv+0.5; break; //quadciaintensitels (wrongly was 1.898)
-	    case 1: uv = 1.6544*settings.uv+0.5; break; //hexciaPenz (wrongly was 4.94)
+	    case 0: uv = 0.9104*settings.uv+0.5; break; //quadciaintensitels
+	    case 1: uv = 0.6044*settings.uv+0.5; break; //hexciaPenz
 	    default : uv = settings.uv+0.5; break; //SI intensity
     }
     write_dozenal(uv,1,uv_buffer);
