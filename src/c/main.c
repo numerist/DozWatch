@@ -207,7 +207,7 @@ static void refresh_weather(){
 	switch(settings.wind_speed_format){
 		case 0: wind_kph = 0.9799*settings.wind_kph+0.5; break; //velocitels
 		case 2: wind_kph = settings.wind_kph+0.5; break; //km/h
-    case 1: wind_kph = 1.9572*settings.wind_kph+0.5; break; //unquaVlos
+    case 1: wind_kph = 1.9572*settings.wind_kph+0.5; break; //unciaVlos
 		default: wind_kph = 0.6214*settings.wind_kph+0.5; break; // mph
 	}
   
@@ -223,14 +223,14 @@ static void refresh_weather(){
 
 	switch(settings.pressure_format){
 		case 0: pressure_mb = settings.pressure_mb*1.2446+0.5; break; //pressurels
-    case 2: pressure_mb = settings.pressure_mb*0.4137+0.5; break; //unquaPrems
-    case 3: pressure_mb = settings.pressure_mb*0.3653+0.5; break; //biquaGrafuts Hg
-		default: pressure_mb = settings.pressure_mb*1.0974+0.5; break; //unqualengthels Hg
+    case 2: pressure_mb = settings.pressure_mb*0.4137+0.5; break; //unciaPrems
+    case 3: pressure_mb = settings.pressure_mb*0.3653+0.5; break; //biciaGrafuts Hg
+		default: pressure_mb = settings.pressure_mb*1.0974+0.5; break; //uncialengthels Hg
     case 4: pressure_mb = settings.pressure_mb+0.5; break; //millibars
     //case 0: pressure_mb = settings.pressure_mb*42.1457+0.5; break; //pressurels from inches
-    //case 2: pressure_mb = settings.pressure_mb*14.0098+0.5; break; //unquaPrems from inches
-    //case 3: pressure_mb = settings.pressure_mb*12.37+0.5; break; //biquaGrafuts Hg from inches
-    //default: pressure_mb = settings.pressure_mb*37.1613+0.5; break; //unqualengthels Hg from inches
+    //case 2: pressure_mb = settings.pressure_mb*14.0098+0.5; break; //unciaPrems from inches
+    //case 3: pressure_mb = settings.pressure_mb*12.37+0.5; break; //biciaGrafuts Hg from inches
+    //default: pressure_mb = settings.pressure_mb*37.1613+0.5; break; //uncialengthels Hg from inches
 	}
   
 	if ((settings.humidity>0)&(settings.humidity<=100)){

@@ -246,15 +246,15 @@ module.exports = [
 						"value": 0
 	        },
 					{ 
-						"label": "unqualengthels Hg",
+						"label": "uncialengthels Hg",
 						"value": 1
           },
 					{ 
-						"label": "unquaPrems",
+						"label": "unciaPrems",
 						"value": 2
           },
 					{ 
-						"label": "biquaGrafuts Hg",
+						"label": "biciaGrafuts Hg",
 						"value": 3
           },
           { 
@@ -314,7 +314,7 @@ module.exports = [
 						"value": 0
 					},
 					{ 
-						"label": "unquaVlos", 
+						"label": "unciaVlos", 
 						"value": 1
 					},
 					{ 

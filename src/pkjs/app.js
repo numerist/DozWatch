@@ -17,7 +17,7 @@ function locationSuccess(pos) {
   var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/" + pos.coords.latitude + "," + pos.coords.longitude + ".json";
 	//var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/43.26,-79.9.json"; // Hamilton
   //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/Canada/Greenside_Acres/.json";
-  //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/Australia/Melbourne/.json";
+  //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/HI/Honolulu.json";
   //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/43.229,-79.9911.json";
   console.log(url);
   xhrRequest(url, 'GET',
