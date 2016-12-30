@@ -2,24 +2,22 @@ var Clay = require('pebble-clay');
 var clayConfig = require('./config');
 var clay = new Clay(clayConfig);
 
-var myAPIKey = '';
-
 var xhrRequest = function (url, type, callback) {
   var xhr = new XMLHttpRequest();
-  xhr.onload = function () {
-    callback(this.responseText);
-  };
+  xhr.onload = function () { callback(this.responseText); };
   xhr.open(type, url);
   xhr.send();
 };
 
 function locationSuccess(pos) {
-  var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/" + pos.coords.latitude + "," + pos.coords.longitude + ".json";
-	//var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/43.26,-79.9.json"; // Hamilton
-  //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/Canada/Greenside_Acres/.json";
-  //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/HI/Honolulu.json";
-  //var url = "http://api.wunderground.com/api/" + myAPIKey + "/conditions/q/43.229,-79.9911.json";
-  console.log(url);
+	
+  var url = "http://api.wunderground.com/api/" + localStorage.getItem('API_KEY') + "/conditions/q/" + pos.coords.latitude + "," + pos.coords.longitude + ".json";
+	//var url = "http://api.wunderground.com/api/" + localStorage.getItem('API_KEY') + "/conditions/q/43.26,-79.9.json"; // Hamilton
+  //var url = "http://api.wunderground.com/api/" + localStorage.getItem('API_KEY') + "/conditions/q/Canada/Greenside_Acres/.json";
+  //var url = "http://api.wunderground.com/api/" + localStorage.getItem('API_KEY') + "/conditions/q/HI/Honolulu.json";
+  //var url = "http://api.wunderground.com/api/" + localStorage.getItem('API_KEY') + "/conditions/q/43.229,-79.9911.json";
+  //console.log(url);
+	
   xhrRequest(url, 'GET',
     function(responseText) {
       var json = JSON.parse(responseText);
@@ -59,16 +57,16 @@ function getWeather() {
 }
 
 Pebble.addEventListener('ready', 
-  function(e) {
-    console.log("PebbleKit JS ready!");
-    getWeather();
-  }
+  function(e) { 
+		console.log("PebbleKit JS ready!"); 
+		getWeather();
+	}
 );
 
 Pebble.addEventListener('appmessage',
   function(e) { 
-		console.log(e.payload); 
+		if(e.payload.API_KEY) { localStorage.setItem('API_KEY',e.payload.API_KEY); }
 		getWeather();
-  }                    
+  }      
 );
 

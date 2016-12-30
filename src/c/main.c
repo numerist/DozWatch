@@ -16,7 +16,7 @@ static char is_chalk = PBL_IF_ROUND_ELSE(1,0);
 typedef struct ClaySettings {
   int diurnal, temperature_scale, wind_speed_format, uv_format, date_format, pressure_mb, pressure_format, wind_degrees, wind_degrees_format, origin, hemisphere, season;
  	float temperature, wind_kph, uv, humidity, latitude;
- 	char city[28], conditions[42], weekday_letter[8];
+ 	char city[28], conditions[42], weekday_letter[8], api_key[20];
 } __attribute__((__packed__)) ClaySettings;
 
 typedef struct month_struct {
@@ -173,12 +173,14 @@ static void request_weather(void) {
 	
 	// request data from phone via app.js
 
+	char *ptr = settings.api_key;	
+	
   DictionaryIterator *iter;
-  app_message_outbox_begin(&iter);
-  if (!iter) { return; }
-  int value = 1;
-  dict_write_int(iter, 1, &value, sizeof(int), true);
-  dict_write_end(iter);
+  app_message_outbox_begin(&iter);  
+	if (!iter) { return; }
+	
+	dict_write_cstring(iter,MESSAGE_KEY_API_KEY,ptr);
+	dict_write_end(iter);
   app_message_outbox_send();
 
 }
@@ -262,6 +264,7 @@ static void refresh_weather(){
 	snprintf(weather_buffer, sizeof(weather_buffer), "%s%% %s·%s", humidity_buffer, wind_kph_buffer, wind_degrees_buffer);
 	text_layer_set_text(s_weather_layer, weather_buffer);
  	
+	//if (strlen(settings.api_key)<10) { strcpy(settings.conditions,"Please load API key"); }
   text_layer_set_text(s_conditions_layer, settings.conditions);
 	text_layer_set_text(s_city_layer,settings.city);
 	
@@ -513,6 +516,7 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 	Tuple *season_t = dict_find(iter, MESSAGE_KEY_SEASON);
 	Tuple *hemisphere_t = dict_find(iter, MESSAGE_KEY_HEMISPHERE);
 	Tuple *latitude_t = dict_find(iter, MESSAGE_KEY_LATITUDE);
+	Tuple *api_key_t = dict_find(iter, MESSAGE_KEY_API_KEY);
 
 	// multiplied temperature and wind_kph by 10 before passing from watch and uv
 	// now convert back to real values
@@ -544,6 +548,7 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 	if (origin_t) { settings.origin = atoi(origin_t->value->cstring); }
 	if (season_t) { settings.season = atoi(season_t->value->cstring); }
 	if (hemisphere_t) { settings.hemisphere = atoi(hemisphere_t->value->cstring); }
+	if(api_key_t){ strcpy(settings.api_key,api_key_t->value->cstring); }
 	
   // abbreviate city name
 
@@ -575,6 +580,7 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 	if ((diurnal_t) || (origin_t)) { refresh_time(); }
 	if ((date_format_t) || (origin_t) || (hemisphere_t) || (season_t)) { refresh_date(); }
 	if (temperature_t || wind_kph_t || humidity_t || uv_t || conditions_t || city_t || temperature_scale_t || wind_speed_format_t || wind_degrees_t || pressure_format_t){ refresh_weather(); }
+	if (api_key_t) { request_weather(); };
 	
 }
 
@@ -712,6 +718,7 @@ int main(void) {
     settings.pressure_format = 0;
 		settings.uv_format = 0;
     settings.uv = -1;
+		strcpy(settings.api_key,"");
 	}
 	
   s_main_window = window_create();
@@ -733,8 +740,9 @@ int main(void) {
 	app_message_register_inbox_received(inbox_received_handler);
 	app_message_open(128, 128);
 	
-	tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
+	tick_timer_service_subscribe(SECOND_UNIT, tick_handler);	
 	//accel_tap_service_subscribe(tap_handler);
+	
   app_event_loop();
   
 	window_destroy(s_main_window);

@@ -359,7 +359,27 @@ module.exports = [
 			}		
     ]
   },
-	
+
+  {
+    "type": "section",
+    "items": [
+      {
+        "type": "heading",
+        "defaultValue": "Weather Underground"
+      },
+  		{ 
+    		"type": "input", 
+				"label": "API KEY",
+				"messageKey": "API_KEY",
+    		"defaultValue": "",
+				  "attributes": {
+    				"placeholder": "1234567890abcdef",
+    				"limit": 16
+  				}
+  		}
+		]
+  },
+
   {
     "type": "submit",
     "defaultValue": "Save Settings"

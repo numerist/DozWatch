@@ -13,6 +13,7 @@
         "displayName": "weather clock",
         "enableMultiJS": true,
         "messageKeys": {
+            "API_KEY": 19,
             "CITY": 5,
             "CONDITIONS": 6,
             "DATE_FORMAT": 3,
@@ -49,7 +50,7 @@
                 },
                 {
                     "file": "fonts/Verdana-NBold.ttf",
-                    "name": "FONT_VERDANA_NBOLD_18",
+                    "name": "FONT_VERDANA_NBOLD_36",
                     "targetPlatforms": [
                         "aplite",
                         "basalt",
@@ -60,7 +61,7 @@
                 },
                 {
                     "file": "fonts/Verdana-NBold.ttf",
-                    "name": "FONT_VERDANA_NBOLD_36",
+                    "name": "FONT_VERDANA_NBOLD_18",
                     "targetPlatforms": [
                         "aplite",
                         "basalt",
